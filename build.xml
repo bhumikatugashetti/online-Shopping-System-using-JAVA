@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OnlineShoppingSystem" default="compile" basedir=".">
+    <description>Online Shopping System using Java, Swing, JSP, and JDBC</description>
+
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="webapp"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="Compile the source">
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+        <copy todir="${build.dir}/classes">
+            <fileset dir="${src.dir}">
+                <include name="**/*.properties"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="dist" depends="compile" description="Package as JAR">
+        <jar destfile="${dist.dir}/OnlineShoppingSystem.jar" basedir="${build.dir}/classes"/>
+    </target>
+
+    <target name="clean" description="Clean up">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="run-gui" depends="compile" description="Run Swing GUI Application">
+        <java classname="gui.Main" fork="true">
+            <classpath>
+                <pathelement location="${build.dir}/classes"/>
+                <pathelement location="${lib.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="run-calculator" depends="compile" description="Run Calculator">
+        <java classname="gui.Calculator" fork="true">
+            <classpath>
+                <pathelement location="${build.dir}/classes"/>
+                <pathelement location="${lib.dir}"/>
+            </classpath>
+        </java>
+    </target>
+</project>

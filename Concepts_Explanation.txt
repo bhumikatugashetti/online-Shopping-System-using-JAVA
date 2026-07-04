@@ -1,0 +1,47 @@
+=========================================================
+ONLINE SHOPPING SYSTEM: KEY CONCEPTS EXPLANATION
+=========================================================
+
+1. String
+-------------------------
+What it is: 
+In Java, a String is an object that represents a sequence of characters (text). It is the most common way to store text data.
+
+Where it is used in your project:
+Anytime you deal with words or sentences, you are using a String.
+- Usernames and Passwords: In LoginServlet.java, you use `String username = request.getParameter("username");`
+- Product Information: In Product.java, the name and description of items (like "Laptop") are stored as Strings.
+- Database Queries: The SQL text you send to the database is built using Strings, for example: `String sql = "SELECT * FROM orders";` in OrderDAO.java.
+
+2. Swing (Java Swing)
+-------------------------
+What it is: 
+Swing is a Graphical User Interface (GUI) toolkit for Java. It provides the building blocks to create desktop applications with windows, buttons, text fields, and tables.
+
+Where it is used in your project:
+Everything you see when you run the application via `run.bat` is built using Java Swing!
+- Files: The entire `src/gui/` folder (LoginFrame.java, CustomerFrame.java, AdminFrame.java) is written using Swing.
+- Components: 
+    - `JFrame` creates the main windows you look at.
+    - `JButton` creates the clickable buttons (like "Login", "Refresh", and "Add to Cart").
+    - `JTable` creates the grid that displays your products and orders on the screen.
+
+3. JSP (JavaServer Pages)
+-------------------------
+What it is: 
+JSP is a technology used to create dynamic web pages using Java. It allows you to write standard HTML (for the webpage structure) but insert Java code directly inside it to make the page dynamic and interactive.
+
+Where it is used in your project:
+Your project has a web version meant to run in a browser.
+- Files: Inside your `webapp` folder, there are files ending in `.jsp` (like index.jsp, products.jsp, admin.jsp).
+- How it works: If you host the project on a server like Apache Tomcat, users can access your store through Chrome or Edge. The Servlets (inside `src/servlet/`) process the logic, and then they redirect the user to the correct JSP page to display the HTML.
+
+4. JDBC (Java Database Connectivity)
+-------------------------
+What it is: 
+JDBC is an API (Application Programming Interface) in Java that dictates how a Java application can connect to and interact with a database.
+
+Where it is used in your project:
+Your Java code and your XAMPP MySQL database are two completely separate programs. JDBC is the "bridge" that allows them to communicate.
+- Connection: In your `src/db/DBConnection.java` file, JDBC uses the `mysql-connector-j-8.0.33.jar` file inside your `lib` folder to connect to your `online_shopping` database.
+- Action: In your Data Access Objects (like UserDAO.java or OrderDAO.java), the app uses JDBC tools like `PreparedStatement` and `ResultSet` to securely send SQL commands across that bridge and read the answers back into Java.
